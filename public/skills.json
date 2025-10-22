@@ -1,0 +1,74 @@
+[
+  {
+    "skillId": 1,
+    "skillName": "Beginner Guitar Lessons",
+    "providerName": "Sarina Jafreen",
+    "providerEmail": "alex@skillswap.com",
+    "price": 20,
+    "rating": 4.8,
+    "slotsAvailable": 3,
+    "description": "Acoustic guitar classes for complete beginners.",
+    "image": "/images/giter.jpg",
+    "category": "Music"
+  },
+  {
+    "skillId": 2,
+    "skillName": "Spoken English Practice",
+    "providerName": "Sabahat Safina",
+    "providerEmail": "sara@skillswap.com",
+    "price": 10,
+    "rating": 4.6,
+    "slotsAvailable": 5,
+    "description": "Conversational English sessions for non-native speakers.",
+    "image": "/images/spoken.jpg",
+    "category": "Language"
+  },
+  {
+    "skillId": 3,
+    "skillName": "Basic Web Development",
+    "providerName": "S A Mamun",
+    "providerEmail": "rafi@skillswap.com",
+    "price": 30,
+    "rating": 4.9,
+    "slotsAvailable": 4,
+    "description": "Learn HTML, CSS, and basic JavaScript from scratch.",
+    "image": "/images/web2.jpg",
+    "category": "Technology"
+  },
+  {
+    "skillId": 4,
+    "skillName": "Yoga for Beginners",
+    "providerName": "M Sahriar",
+    "providerEmail": "anita@skillswap.com",
+    "price": 15,
+    "rating": 4.7,
+    "slotsAvailable": 6,
+    "description": "Relaxing yoga sessions focused on posture and breathing.",
+    "image": "/images/yoga.jpg",
+    "category": "Health"
+  },
+  {
+    "skillId": 5,
+    "skillName": "Photography Basics",
+    "providerName": "Sohana Tanjim",
+    "providerEmail": "imran@skillswap.com",
+    "price": 25,
+    "rating": 4.5,
+    "slotsAvailable": 2,
+    "description": "Learn the art of photography with DSLR and phone cameras.",
+    "image": "/images/photography.jpg",
+    "category": "Art"
+  },
+  {
+    "skillId": 6,
+    "skillName": "Cooking Bangladeshi Dishes",
+    "providerName": "Salina Alam",
+    "providerEmail": "nusrat@skillswap.com",
+    "price": 18,
+    "rating": 4.9,
+    "slotsAvailable": 5,
+    "description": "Cook delicious Bangladeshi dishes easily at home.",
+    "image": "/images/cook1.jpg",
+    "category": "Cooking"
+  }
+]

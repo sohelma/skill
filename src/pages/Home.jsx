@@ -1,10 +1,12 @@
-import React from 'react';
-import { Navigate } from 'react-router';
+import React from "react";
+import Skills from "../components/Skills";
 
 const Home = () => {
-    return (
-        <Navigate to='/category/0'></Navigate>
-    );
+  return (
+    <div>
+      <Skills />
+    </div>
+  );
 };
 
 export default Home;

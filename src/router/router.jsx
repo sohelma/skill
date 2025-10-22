@@ -1,35 +1,29 @@
-import { createBrowserRouter } from "react-router";
+import { createBrowserRouter } from "react-router-dom";
 import HomeLayout from "../layouts/HomeLayout";
-import Home from "../pages/Home";
-import CategoryNews from "../pages/CategoryNews";
+import Skills from "../pages/Skills";
+import SkillDetails from "../pages/SkillDetails";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import ProtectedRoute from "../routes/ProtectedRoute";
 
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomeLayout />,
+    children: [
+      { path: "/", element: <Skills /> },
+      { 
+        path: "/skill/:id",
+        element: (
+          <ProtectedRoute>
+            <SkillDetails />
+          </ProtectedRoute>
+        )
+      },
+      { path: "/login", element: <Login /> },
+      { path: "/signup", element: <Signup /> }
+    ]
+  }
+]);
 
-const router=createBrowserRouter([
-    {
-        path:'/',
-        element: <HomeLayout></HomeLayout>,
-        children:[
-            {path:'',
-                element:<Home></Home>
-            },
-            {path:'/category/:id',
-                element:<CategoryNews></CategoryNews>,
-                loader: () => fetch("/news.json"),
-            },
-        ]
-    },
-    {
-        path:'/auth',
-        element: <h2>Authentication Layout</h2>
-    },
-    {   
-        path:'/news',
-        element: <h2>News Layout</h2>
-    },
-    {
-        path:'/*',
-        element: <h2 className="text-red-500 text-4xl font-bold mt-16">Error 404</h2>
-    }
-]
-);
-export default router
+export default router;
