@@ -43,6 +43,12 @@ const Login = () => {
         <button type="submit" className="btn btn-primary">Login</button>
       </form>
       <button onClick={handleGoogleLogin} className="btn btn-outline mt-3 w-full">Login with Google</button>
+
+        <p
+        onClick={() => navigate("/forgot-password", { state: { email } })}
+        className="text-blue-500 underline cursor-pointer text-sm"
+      >Forgot Password?
+      </p>
       <p className="mt-2 text-sm">Don't have an account? <Link to='/signup' className="text-blue-500 underline">Signup</Link></p>
       <Toaster />
     </div>

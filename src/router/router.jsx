@@ -6,6 +6,8 @@ import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
 import SkillDetails from "../pages/SkillDetails";
 import ProtectedRoute from "../routes/ProtectedRoute";
+import ForgotPassword from "../pages/ForgotPassword";
+
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
+      { path: "/forgot-password", element: <ForgotPassword /> },
 
       // Protected skill detail route
       {
