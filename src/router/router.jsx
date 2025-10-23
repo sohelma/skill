@@ -4,7 +4,7 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
-import SkillDetails from "../pages/SkillDetails"; // ✅ import correct component
+import SkillDetails from "../pages/SkillDetails";
 import ProtectedRoute from "../routes/ProtectedRoute";
 
 export const router = createBrowserRouter([
@@ -15,7 +15,17 @@ export const router = createBrowserRouter([
       { path: "/", element: <Home /> },
       { path: "/login", element: <Login /> },
       { path: "/signup", element: <Signup /> },
-      { path: "/skill/:id", element: <SkillDetails /> }, // ✅ path updated
+
+      // Protected skill detail route
+      {
+        path: "/skill/:id",
+        element: (
+          <ProtectedRoute>
+            <SkillDetails />
+          </ProtectedRoute>
+        ),
+      },
+
       {
         path: "/profile",
         element: (
