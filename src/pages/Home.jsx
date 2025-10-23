@@ -1,126 +1,92 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HeroSection from "../components/HeroSection";
+import toast from "react-hot-toast";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const Home = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
+    AOS.init({ duration: 800, once: true });
+
     fetch("/skills.json")
       .then((res) => res.json())
-      .then((data) => setSkills(data.skills || data))
-      .catch((err) => console.error(err));
+      .then((data) => {
+        setSkills(data.skills || data);
+        toast.success("Popular skills loaded successfully!");
+      })
+      .catch((err) => toast.error("Failed to load skills."));
   }, []);
 
-  // Filter top rated providers (rating ≥ 4.8)
-  const topRated = skills.filter((s) => s.rating >= 4.8);
+  const topProviders = [...skills].sort((a, b) => b.rating - a.rating).slice(0, 4);
+
+  const steps = [
+    { id: 1, title: "Search Skill", description: "আপনার প্রয়োজনীয় skill খুঁজুন।", icon: "🔍" },
+    { id: 2, title: "Select Provider", description: "Top rated provider বেছে নিন।", icon: "👨‍💻" },
+    { id: 3, title: "Book & Pay", description: "Securely book এবং pay করুন।", icon: "💳" },
+    { id: 4, title: "Get Service", description: "সেবা উপভোগ করুন।", icon: "✅" }
+  ];
 
   return (
-    <div className="bg-gray-50">
-      {/* ✅ Hero Section */}
+    <div className="space-y-20">
+      {/* Hero Section */}
       <HeroSection />
 
-      {/* ✅ Popular Skills Section */}
-      <section className="py-12 px-6 lg:px-16">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800">
-          Popular <span className="text-blue-600">Skills</span>
-        </h2>
-
+      {/* Popular Skills */}
+      <section className="max-w-7xl mx-auto px-4">
+        <h2 className="text-3xl font-bold text-center mb-10" data-aos="fade-up">Popular <span className="text-blue-600">Skills</span></h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {skills.map((skill) => (
-            <div
-              key={skill.skillId}
-              className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5 border border-gray-100"
-            >
-              <img
-                src={skill.image}
-                alt={skill.skillName}
-                className="w-full h-48 object-cover rounded-lg"
-              />
-              <h3 className="text-xl font-semibold mt-3">{skill.skillName}</h3>
-              <p className="text-gray-600">Provider: {skill.providerName}</p>
-              <div className="flex justify-between items-center mt-2 text-sm text-gray-700">
-                <span>💰 ${skill.price}</span>
-                <span>⭐ {skill.rating}</span>
+          {skills.map(skill => (
+            <div key={skill.skillId} className="border rounded-xl shadow hover:shadow-2xl transition transform hover:-translate-y-1 bg-white" data-aos="zoom-in">
+              <img src={skill.image} alt={skill.skillName} className="w-full h-56 object-cover rounded-t-xl" />
+              <div className="p-5">
+                <h2 className="font-bold text-lg mb-1">{skill.skillName}</h2>
+                <p className="text-gray-600 mb-1">Provider: {skill.providerName}</p>
+                <p className="text-gray-600 mb-1">Price: ${skill.price}</p>
+                <p className="text-yellow-600 font-medium">Rating: {skill.rating} ⭐</p>
+                <Link to={`/skill/${skill.skillId}`} className="mt-3 inline-block bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">View Details</Link>
               </div>
-              <Link
-                to={`/skill/${skill.skillId}`}
-                className="mt-4 inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition"
-              >
-                View Details
-              </Link>
             </div>
           ))}
         </div>
       </section>
 
-      {/* ✅ Top Rated Providers Section */}
-      {/* ✅ Top Rated Providers Section */}
-<section className="py-16 bg-gradient-to-b from-blue-50 to-white px-6 lg:px-16">
-  <h2 className="text-3xl md:text-4xl font-bold text-center mb-10 text-gray-800">
-    Top Rated <span className="text-blue-600">Providers</span>
-  </h2>
-
-  <div className="flex flex-wrap justify-center gap-8">
-    {topRated.map((provider) => (
-      <div
-        key={provider.skillId}
-        className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5 border border-gray-100 text-center w-72"
-      >
-        <img
-          src={provider.image}
-          alt={provider.skillName}
-          className="w-32 h-32 mx-auto rounded-full object-cover mb-4 border-4 border-blue-100"
-        />
-        <h3 className="text-lg font-semibold">{provider.providerName}</h3>
-        <p className="text-sm text-gray-600">{provider.skillName}</p>
-        <p className="text-yellow-500 font-medium mt-1">⭐ {provider.rating}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
-
-      {/* ✅ How It Works Section */}
-      <section className="py-20 bg-blue-600 text-white text-center px-6 lg:px-16">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">How It Works</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-white text-blue-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-              1
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Browse Skills</h3>
-            <p className="text-blue-100 max-w-xs">
-              Explore a wide range of skills and choose what suits your passion and career.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-white text-blue-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-              2
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Connect With Provider</h3>
-            <p className="text-blue-100 max-w-xs">
-              Learn directly from experienced instructors and professionals.
-            </p>
-          </div>
-
-          <div className="flex flex-col items-center">
-            <div className="w-16 h-16 bg-white text-blue-600 rounded-full flex items-center justify-center text-3xl font-bold mb-4">
-              3
-            </div>
-            <h3 className="text-xl font-semibold mb-2">Start Learning</h3>
-            <p className="text-blue-100 max-w-xs">
-              Join the session, practice, and upgrade your skills anytime, anywhere.
-            </p>
+      {/* Top Rated Providers */}
+      <section className="bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-10" data-aos="fade-up">⭐Top Rated <span className="text-blue-600">Providers</span> </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 justify-center">
+            {topProviders.map(provider => (
+              <div key={provider.skillId} className="border rounded-xl shadow hover:shadow-lg transition bg-white" data-aos="fade-up">
+                <img src={provider.image} alt={provider.skillName} className="w-full h-56 object-cover rounded-t-xl" />
+                <div className="p-4">
+                  <h3 className="font-bold text-lg">{provider.providerName}</h3>
+                  <p className="text-gray-600">{provider.skillName}</p>
+                  <p className="text-yellow-600 font-medium my-1">Rating: {provider.rating} ⭐</p>
+                  <p className="text-gray-700 mb-3">Price: ${provider.price}</p>
+                  <Link to={`/skill/${provider.skillId}`} className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition">View Details</Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* ✅ Footer */}
-      <footer className="py-6 text-center text-gray-500 text-sm border-t bg-white">
-        © {new Date().getFullYear()} Skill App — All rights reserved.
-      </footer>
+      {/* How It Works */}
+      <section className="max-w-7xl mx-auto px-4 text-center">
+        <h2 className="text-3xl font-bold mb-10" data-aos="fade-up">How <span className="text-blue-600">It Works</span> </h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {steps.map(step => (
+            <div key={step.id} className="bg-white border rounded-xl p-6 shadow hover:shadow-lg transition" data-aos="zoom-in-up">
+              <div className="text-5xl mb-3">{step.icon}</div>
+              <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+              <p className="text-gray-600">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   );
 };

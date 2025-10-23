@@ -1,74 +1,74 @@
-// src/pages/Profile.jsx
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 
 const Profile = () => {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); // current user from context
   const [name, setName] = useState(user?.displayName || "");
-  const [photoURL, setPhotoURL] = useState(user?.photoURL || "");
+  const [photo, setPhoto] = useState(user?.photoURL || "");
 
-  const handleUpdateProfile = async (e) => {
+  const handleUpdateProfile = (e) => {
     e.preventDefault();
-    if (!name || !photoURL) {
-      toast.error("Name and Image URL cannot be empty!");
-      return;
-    }
 
-    try {
-      await updateProfile(user, {
-        displayName: name,
-        photoURL: photoURL,
+    // Firebase built-in update function
+    updateProfile(user, {
+      displayName: name,
+      photoURL: photo,
+    })
+      .then(() => {
+        toast.success("✅ Profile Updated Successfully!");
+      })
+      .catch((error) => {
+        toast.error("❌ " + error.message);
       });
-      toast.success("Profile updated successfully!");
-    } catch (error) {
-      toast.error(error.message);
-    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded shadow">
-        <h2 className="text-2xl font-bold mb-4 text-center">My Profile</h2>
+    <div className="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-lg mt-10 border">
+      <h2 className="text-2xl font-bold text-center mb-4">Update Profile</h2>
 
-        <form onSubmit={handleUpdateProfile} className="space-y-4">
-          <div>
-            <label className="block mb-1">Name</label>
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              className="w-full border p-2 rounded"
-              placeholder="Enter your name"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1">Photo URL</label>
-            <input
-              type="text"
-              value={photoURL}
-              onChange={(e) => setPhotoURL(e.target.value)}
-              className="w-full border p-2 rounded"
-              placeholder="Enter image URL"
-            />
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
-          >
-            Update Profile
-          </button>
-        </form>
-
-        <div className="mt-4 text-center">
-          <p>
-            <strong>Email:</strong> {user?.email}
-          </p>
-        </div>
+      {/* Profile Preview */}
+      <div className="flex flex-col items-center mb-6">
+        <img
+          src={photo || "https://i.ibb.co/4pDNDk1/avatar.png"}
+          alt="Profile"
+          className="w-24 h-24 rounded-full border-4 border-blue-200 object-cover"
+        />
+        <p className="mt-2 text-gray-700 font-semibold">
+          {user?.email || "No Email"}
+        </p>
       </div>
+
+      {/* Form */}
+      <form onSubmit={handleUpdateProfile} className="space-y-4">
+        <div>
+          <label className="block font-medium text-gray-600 mb-1">Full Name</label>
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <div>
+          <label className="block font-medium text-gray-600 mb-1">Photo URL</label>
+          <input
+            type="text"
+            value={photo}
+            onChange={(e) => setPhoto(e.target.value)}
+            className="w-full border p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+        >
+          Update Profile
+        </button>
+      </form>
     </div>
   );
 };
