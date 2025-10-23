@@ -1,18 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
+import AuthProvider from "./providers/AuthProvider";
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-     
-      <h1 className='text-green-500 text-2xl font-bold'>Dragon news</h1>
-     
-    </>
-  )
+    <AuthProvider>  {/* ✅ AuthProvider দিয়ে wrap করা */}
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
-export default App
+export default App;
