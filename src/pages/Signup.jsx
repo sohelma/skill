@@ -1,90 +1,117 @@
-// src/pages/Signup.jsx
-
-import React, { useState } from 'react';
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../firebase/firebase.config';
-import { useNavigate } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { createUserWithEmailAndPassword, updateProfile, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { auth } from "../firebase/firebase.config";
+import toast from "react-hot-toast";
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [photoURL, setPhotoURL] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     // Password validation
-    if (password.length < 6) {
-      toast.error('Password must be at least 6 characters');
-      return;
-    }
     if (!/[A-Z]/.test(password)) {
-      toast.error('Password must include at least one uppercase letter');
+      toast.error("Password must have an uppercase letter!");
       return;
     }
     if (!/[a-z]/.test(password)) {
-      toast.error('Password must include at least one lowercase letter');
+      toast.error("Password must have a lowercase letter!");
+      return;
+    }
+    if (password.length < 6) {
+      toast.error("Password must be at least 6 characters!");
       return;
     }
 
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      // Update profile
-      if (photoURL) {
-        await updateProfile(userCredential.user, { displayName: name, photoURL });
-      } else {
-        await updateProfile(userCredential.user, { displayName: name });
-      }
-      toast.success('Signup successful!');
-      navigate('/'); // redirect to home page
+      await updateProfile(userCredential.user, { displayName: name });
+      toast.success("Signup successful!");
+      navigate("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const handleGoogleSignup = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      await signInWithPopup(auth, provider);
+      toast.success("Google login successful!");
+      navigate("/");
     } catch (error) {
       toast.error(error.message);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow-md bg-white">
-      <Toaster />
-      <h2 className="text-2xl font-bold mb-4">Signup</h2>
-      <form onSubmit={handleSignup} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border rounded"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Photo URL (optional)"
-          value={photoURL}
-          onChange={(e) => setPhotoURL(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
-        <button type="submit" className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
-          Signup
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="w-full max-w-md p-6 bg-white rounded shadow">
+        <h2 className="text-2xl font-bold mb-4 text-center">Signup</h2>
+        <form onSubmit={handleSignup} className="space-y-4">
+          <div>
+            <label className="block mb-1">Name</label>
+            <input
+              type="text"
+              name="name"
+              required
+              className="w-full border p-2 rounded"
+              placeholder="Enter your name"
+            />
+          </div>
+          <div>
+            <label className="block mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              required
+              className="w-full border p-2 rounded"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="relative">
+            <label className="block mb-1">Password</label>
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              required
+              className="w-full border p-2 rounded"
+              placeholder="Enter your password"
+            />
+            <span
+              className="absolute right-2 top-2 cursor-pointer"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? "🙈" : "👁️"}
+            </span>
+          </div>
+          <button
+            type="submit"
+            className="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600"
+          >
+            Signup
+          </button>
+        </form>
+
+        <button
+          onClick={handleGoogleSignup}
+          className="w-full mt-2 bg-red-500 text-white py-2 rounded hover:bg-red-600"
+        >
+          Signup/Login with Google
         </button>
-      </form>
+
+        <div className="mt-4 text-center">
+          Already have an account?{" "}
+          <Link to="/login" className="text-blue-500 hover:underline">
+            Login
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
