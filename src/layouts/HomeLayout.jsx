@@ -1,22 +1,18 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const HomeLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      {/* Navbar সব পেজে কমন */}
+    <div className="min-h-screen flex flex-col">
       <Navbar />
-
-      {/* Dynamic page content */}
-      <main className="flex-grow max-w-6xl mx-auto p-4">
+      <main className="flex-grow">
         <Outlet />
       </main>
-
-      {/* Optional Footer */}
-      <footer className="bg-gray-200 text-center py-3 mt-6 text-sm text-gray-700">
-        © {new Date().getFullYear()} My Skill App — All rights reserved.
-      </footer>
+      <div className="bg-gray-200 text-center py-4 mt-6">
+        <Footer></Footer>
+      </div>
     </div>
   );
 };

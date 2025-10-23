@@ -51,7 +51,7 @@ const Footer = () => {
 
       {/* Footer Bottom */}
       <div className="text-center text-gray-500 border-t border-gray-700 mt-8 pt-4">
-        © 2025 CS — Ticket System. All rights reserved.
+         © 2025 SkillSwap — All rights reserved.
       </div>
     </footer>
   );
