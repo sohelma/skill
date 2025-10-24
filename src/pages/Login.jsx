@@ -76,7 +76,7 @@ const Login = () => {
          <button
   type="submit"
   className="w-full bg-gradient-to-r from-indigo-500 to-indigo-900 text-white py-2 rounded 
-             hover:from-blue-500 hover:to-blue-800 transition-all duration-300">
+             hover:from-blue-400 hover:to-blue-800 transition-all duration-300">
   Login
 </button>
         </form>
@@ -91,7 +91,7 @@ const Login = () => {
           </Link>
           <button
             onClick={handleGoogleLogin}
-            className="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600"
+            className="bg-pink-500 text-white px-4 py-1 rounded hover:bg-pink-700 text-gray-200"
           >
             Login with Google
           </button>

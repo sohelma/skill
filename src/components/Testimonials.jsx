@@ -6,7 +6,7 @@ const Testimonials = () => {
   const [skills, setSkills] = useState([]);
 
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 800 });
 
     fetch("/skills.json")
       .then((res) => res.json())
@@ -18,48 +18,55 @@ const Testimonials = () => {
 
   return (
     <div className="bg-gradient-to-b from-gray-50 to-white py-16 px-4">
-      <h2
-        data-aos="fade-up"
-        className="text-4xl font-bold text-center mb-12 text-gray-800"
-      >
-        <span className="text-indigo-600">What Our </span>Students Say
+      <h2 className="text-3xl font-bold text-center mb-10">
+        <span className="text-indigo-600">What Our</span> Students Say
       </h2>
 
-      {/* Card Container */}
-      <div className="flex justify-center">
-        <div className="flex gap-8 overflow-x-auto pb-4 px-8 mx-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
-          {topSkills.map((skill) => (
-            <div
-              key={skill.skillId}
-              data-aos="fade-up"
-              className="flex-shrink-0 w-80 bg-white border border-gray-100 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 text-center"
-            >
-              <div className="p-6">
-                <img
-                  src={skill.image}
-                  alt={skill.skillName}
-                  className="w-24 h-24 mx-auto rounded-full mb-4 object-cover border-4 border-indigo-100"
-                />
-                <h3 className="font-semibold text-lg text-gray-800 mb-1">
-                  {skill.skillName}
-                </h3>
-                <p className="text-sm text-indigo-500 mb-2">{skill.category}</p>
-                <p className="text-gray-600 italic mb-4">
-                  “{skill.description}”
-                </p>
-                <div className="flex justify-center items-center gap-2 text-yellow-500">
-                  {"★".repeat(Math.round(skill.rating))}
-                  <span className="text-gray-600 text-sm">
-                    {skill.rating.toFixed(1)} / 5
-                  </span>
-                </div>
-                <p className="mt-3 text-gray-500 text-sm">
-                  — {skill.providerName}
-                </p>
-              </div>
+      {/* Responsive Card Wrapper */}
+      <div
+        className="flex justify-center flex-wrap gap-6 md:gap-10 
+        overflow-x-auto scrollbar-none scroll-smooth snap-x snap-mandatory
+        md:justify-center"
+      >
+        {topSkills.map((skill) => (
+          <div
+            key={skill.skillId}
+            data-aos="fade-up"
+            className="snap-center flex-shrink-0 w-[90%] sm:w-[45%] lg:w-[30%]
+            bg-white border border-gray-200 rounded-2xl shadow-md 
+            hover:shadow-xl transition-all duration-300 p-6 text-center"
+          >
+            <img
+              src={skill.image}
+              alt={skill.skillName}
+              className="w-20 h-20 mx-auto rounded-full object-cover mb-4 shadow-sm"
+            />
+            <h3 className="font-semibold text-lg mb-1 text-gray-800">
+              {skill.skillName}
+            </h3>
+            <p className="text-sm text-gray-500 italic mb-2">
+              {skill.category}
+            </p>
+            <p className="text-gray-600 text-sm leading-relaxed mb-3">
+              "{skill.description}"
+            </p>
+            <div className="flex items-center justify-center gap-1">
+              {[...Array(5)].map((_, i) => (
+                <span
+                  key={i}
+                  className={`text-amber-400 ${
+                    i < Math.round(skill.rating) ? "opacity-100" : "opacity-30"
+                  }`}
+                >
+                  ★
+                </span>
+              ))}
             </div>
-          ))}
-        </div>
+            <p className="text-sm font-medium text-gray-700 mt-2">
+              — {skill.providerName}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
