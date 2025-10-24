@@ -25,7 +25,7 @@ const Home = () => {
 
       {/* Popular Skills */}
       <div className="px-4">
-        <h2 className="text-3xl font-bold mb-6 text-center">Popular Skills</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center"> <span className="text-indigo-600">Popular</span> Skills</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {skills.map((skill) => (
             <SkillsCard key={skill.skillId} skill={skill} />
@@ -35,7 +35,7 @@ const Home = () => {
 
       {/* Top Rated Providers */}
       <div className="px-4">
-        <h2 className="text-3xl font-bold mb-6 text-center">Top Rated Providers</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center"><span className="text-indigo-600">Top Rated</span> Providers</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {topProviders.map((provider) => (
             <SkillsCard key={provider.skillId} skill={provider} />

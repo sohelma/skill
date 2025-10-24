@@ -64,7 +64,7 @@ const Profile = () => {
 
         <button
           type="submit"
-          className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+          className="w-full bg-gradient-to-r from-blue-500 to-blue-900 text-white py-2 rounded-lg hover:bg-blue-700 transition"
         >
           Update Profile
         </button>

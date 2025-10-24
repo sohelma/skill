@@ -36,7 +36,7 @@ const HowItWorks = () => {
 
   return (
     <div className="bg-white p-8 rounded-lg shadow-lg">
-      <h2 className="text-3xl font-bold text-center mb-8">How It Works</h2>
+      <h2 className="text-3xl font-bold text-center mb-8"><span className="text-indigo-600">How It</span> Works</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {steps.map((step) => (
           <div

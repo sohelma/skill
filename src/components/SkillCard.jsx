@@ -14,7 +14,7 @@ const SkillsCard = ({ skill }) => {
       <p className="text-yellow-500 font-medium mb-3">Rating: {skill.rating} ⭐</p>
       <Link
         to={`/skill/${skill.skillId}`}
-        className="inline-block w-full text-center bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold py-2 rounded-lg shadow hover:from-blue-600 hover:to-purple-600 transition"
+        className="inline-block w-full text-center bg-gradient-to-r from-blue-500 to-blue-900 text-white font-semibold py-2 rounded-lg shadow hover:from-blue-600 hover:to-purple-600 transition"
       >
         View Details
       </Link>

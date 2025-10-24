@@ -13,23 +13,24 @@ const ForgotPassword = () => {
   const initialEmail = location.state?.email || "";
   const [email, setEmail] = useState(initialEmail);
 
-  const handleResetPassword = async (e) => {
-    e.preventDefault();
+const handleResetPassword = async (e) => {
+  e.preventDefault();
 
-    if (!email) {
-      toast.error("Please enter your email!");
-      return;
-    }
+  if (!email) {
+    toast.error("Please enter your email!");
+    return;
+  }
 
-    try {
-      await sendPasswordResetEmail(auth, email);
-      toast.success(`Reset email sent to ${email}`);
-      setEmail(""); // clear form
-      navigate("/login"); // redirect to login
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
+  try {
+    await sendPasswordResetEmail(auth, email);
+    toast.success(`✅ Reset email sent to ${email}.`);
+    setEmail(""); // clear form
+    navigate("/login"); // redirect to login
+  } catch (error) {
+    toast.error("❌ " + error.message);
+  }
+ };
+
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-gray-100">

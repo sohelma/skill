@@ -9,16 +9,25 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
 
+
   return (
+    
     <nav className="bg-white shadow-md fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
           {/* Left Logo */}
-          <Link to="/" className="flex items-center gap-2">
-            <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
-            <span className="font-bold text-xl text-amber-600">SkillSwap</span>
+          <Link to="/" className="flex items-center gap-3 hover:scale-105 transition-transform duration-200">
+            <img
+              src={logo}
+              alt="Logo"
+              className="w-11 h-11 object-contain rounded-full shadow-sm border border-gray-200"
+            />
+            <span className="font-extrabold text-xl bg-gradient-to-r from-amber-600 to-orange-300 bg-clip-text text-transparent">
+              SkillSwap
+            </span>
           </Link>
+
 
           {/* Center Links */}
           <div className="hidden md:flex gap-8">
@@ -28,31 +37,47 @@ const Navbar = () => {
 
           {/* Right Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            {user ? (
-              <>
-                <img
-                  src={user.photoURL || userImg}
-                  alt={user.displayName || "User"}
-                  className="w-10 h-10 rounded-full"
-                  title={user.displayName || "User"}
-                />
-                <button
-                  onClick={logOut}
-                  className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                  Login
-                </Link>
-                <Link to="/signup" className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition">
-                  Signup
-                </Link>
-              </>
-            )}
+           {user ? (
+  <>
+    <div className="relative group">
+  <img
+    src={user?.photoURL || userImg}
+    alt={user?.displayName || "User"}
+    className="w-10 h-10 rounded-full cursor-pointer border-2 border-gray-300 hover:border-green-600 transition"
+  />
+  
+  {/* Hover করলে নাম দেখাবে */}
+  <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 bg-blue-600 text-white text-sm px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition duration-300 whitespace-nowrap">
+    {user?.displayName || "User"}
+  </div>
+</div>
+
+
+
+    <button
+      onClick={logOut}
+      className="bg-gradient-to-r from-red-500 to-red-700 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+    >
+      Logout
+    </button>
+  </>
+) : (
+  <>
+    <Link
+      to="/login"
+      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition"
+    >
+      Login
+    </Link>
+    <Link
+      to="/signup"
+      className="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+    >
+      Signup
+    </Link>
+  </>
+)}
+
           </div>
 
           {/* Mobile Hamburger */}
@@ -87,6 +112,7 @@ const Navbar = () => {
           )}
         </div>
       )}
+      
     </nav>
   );
 };
