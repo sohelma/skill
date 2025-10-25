@@ -17,7 +17,7 @@ const Testimonials = () => {
   const topSkills = [...skills].sort((a, b) => b.rating - a.rating).slice(0, 3);
 
   return (
-    <div className="bg-gradient-to-b from-gray-50 to-white py-16 px-4">
+    <div className="bg-gradient-to-r from-blue-200 to-white py-16 px-4">
       <h2 className="text-3xl font-bold text-center mb-10">
         <span className="text-indigo-600">What Our</span> Students Say
       </h2>

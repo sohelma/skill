@@ -1,10 +1,10 @@
 
 # Project name
 
-SkillSwap – A Local Skill Exchange Platform
+SkillSwap – A Local Skill Exchange Platform.
 
 ## Purpose
-An interactive platform for individuals to offer, learn, and trade skills within their local area. Whether it’s guitar lessons, language exchange, coding help, yoga training,cooking, photography and others — users can browse listings, rate experiences, and connect with local skill providers.
+An interactive platform for individuals to offer, learn, and trade skills within their local area. Whether it’s guitar lessons, language exchange, Web Development, yoga training, cooking, photography and others — users can browse listings, rate experiences, and connect with local skill providers.
 
 ## Live URL
 
@@ -100,3 +100,4 @@ react-hot-toast → Toast notifications (success, error, info)
 react-icons → Hamburger menu and other UI icons
 
 aos → Animate on scroll (fade, slide, zoom)
+

@@ -56,7 +56,7 @@ const Navbar = () => {
 
     <button
       onClick={logOut}
-      className="bg-gradient-to-r from-red-500 to-red-700 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+      className="bg-gradient-to-r from-red-500 to-red-700 text-white px-3 py-1 rounded hover:bg-red-600 text-gray-300  transition"
     >
       Logout
     </button>

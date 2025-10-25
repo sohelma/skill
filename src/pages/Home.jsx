@@ -19,7 +19,7 @@ const Home = () => {
   const topProviders = [...skills].sort((a, b) => b.rating - a.rating).slice(0, 4);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-16 ">
       {/* Hero Section */}
       <HeroSection />
 
@@ -36,7 +36,7 @@ const Home = () => {
       {/* Top Rated Providers */}
       <div className="px-4">
         <h2 className="text-3xl font-bold mb-6 text-center"><span className="text-indigo-600">Top Rated</span> Providers</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 ">
           {topProviders.map((provider) => (
             <SkillsCard key={provider.skillId} skill={provider} />
           ))}

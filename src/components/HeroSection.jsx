@@ -21,9 +21,21 @@ const slides = [
   },
   {
     id: 3,
+    title: "The Smart Way to Learn.",
+    subtitle: "Join thousands of learners and start your journey today.",
+    image: "/images/photography.jpg",
+  },
+   {
+    id: 4,
     title: "Connect. Learn. Succeed.",
     subtitle: "Join thousands of learners and start your journey today.",
-    image: "/images/spoken.jpg",
+    image: "/images/cook2.jpg",
+  },
+    {
+    id: 4,
+    title: "Giter: Skill Made Simple.",
+    subtitle: "Join thousands of learners and start your journey today.",
+    image: "/images/giter.jpg",
   },
 ];
 
@@ -58,18 +70,18 @@ const HeroSection = () => {
                 </p>
 
                 <div className="flex gap-4 flex-wrap justify-center">
-                  <Link
+                  {/* <Link
                     to="/skills"
                     className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 px-6 py-3 rounded-lg shadow-lg transition text-white font-semibold"
                   >
                     Explore Skills
-                  </Link>
-                  <Link
+                  </Link> */}
+                  {/* <Link
                     to="/register"
                     className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-50 transition"
                   >
                     Join Now
-                  </Link>
+                  </Link> */}
                 </div>
               </div>
             </div>
