@@ -50,7 +50,7 @@ const Footer = () => {
   </div>
 
   {/* Footer Bottom */}
-  <div className="text-center text-gray-500 border-t border-gray-700 mt-10 pt-6">
+  <div className="text-center text-blue-400 border-t border-gray-700 mt-10 pt-6">
      © 2025 SkillSwap — All rights reserved.
   </div>
 </footer>
