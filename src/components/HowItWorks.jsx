@@ -47,7 +47,7 @@ const HowItWorks = () => {
         data-aos="fade-up"
         className="relative bg-white rounded-3xl p-8 shadow-xl hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
       >
-        {/* icon container */}
+        {/* icon */}
         <div className="w-20 h-20 mx-auto mb-6 flex items-center justify-center rounded-full bg-gradient-to-tr from-indigo-300 to-pink-200 text-white text-4xl shadow-lg">
           {step.icon}
         </div>

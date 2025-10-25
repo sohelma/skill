@@ -7,7 +7,7 @@ const Footer = () => {
   <footer className="bg-gradient-to-b from-black to-indigo-900 text-gray-300 py-12 mt-10">
   <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
 
-    {/* Contact Info */}
+    {/* Contact */}
     <div>
       <h2 className="text-xl font-semibold text-white mb-3">Contact Info</h2>
       <p>📍 01234 Gulshan Ave, Dhaka, Bangladesh</p>
@@ -49,7 +49,7 @@ const Footer = () => {
     </div>
   </div>
 
-  {/* Footer Bottom */}
+  {/* Footer*/}
   <div className="text-center text-blue-400 border-t border-gray-700 mt-10 pt-6">
      © 2025 SkillSwap — All rights reserved.
   </div>

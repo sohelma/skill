@@ -25,7 +25,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white p-6 rounded-2xl shadow-lg mt-10 border">
+    <div className="max-w-md mx-auto bg-gradient-to-b from-white to-sky-200 p-6 rounded-2xl shadow-lg mt-10 border">
       <h2 className="text-2xl font-bold text-center mb-4">Update Profile</h2>
 
       {/* Profile Preview */}
@@ -43,7 +43,7 @@ const Profile = () => {
       {/* Form */}
       <form onSubmit={handleUpdateProfile} className="space-y-4">
         <div>
-          <label className="block font-medium text-gray-600 mb-1">Full Name</label>
+          <label className="block font-medium text-gray-600 mb-1"> Name</label>
           <input
             type="text"
             value={name}

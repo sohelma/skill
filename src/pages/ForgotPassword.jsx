@@ -9,7 +9,7 @@ const ForgotPassword = () => {
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/login";
 
-  // যদি Login থেকে email পাঠানো হয়
+  // from Login email sent
   const initialEmail = location.state?.email || "";
   const [email, setEmail] = useState(initialEmail);
 

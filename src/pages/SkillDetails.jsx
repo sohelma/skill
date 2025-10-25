@@ -56,7 +56,7 @@ const SkillDetails = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-12">
+    <div className="min-h-screen bg-gradient-to-t from-gray-200 to-blue-200 pb-12">
       <Toaster position="top-center" />
 
       {/* Banner Image */}
@@ -75,7 +75,7 @@ const SkillDetails = () => {
 
       {/* Content Section */}
       <div className="max-w-4xl mx-auto mt-10 px-4">
-        <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-10 border">
+        <div className="bg-gradient-to-b from-white to-sky-200 rounded-2xl shadow-lg p-6 sm:p-10 border">
           {/* Skill Info */}
           <h2 className="text-2xl font-bold mb-3 text-gray-800">
             {skill.skillName}
