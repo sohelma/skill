@@ -100,6 +100,10 @@ const Navbar = () => {
         <div className="md:hidden bg-white shadow-md flex flex-col gap-2 px-4 py-2">
           <Link to="/" className="block px-2 py-1 hover:bg-gray-100 rounded">Home</Link>
           <Link to="/profile" className="block px-2 py-1 hover:bg-gray-100 rounded">My Profile</Link>
+          <Link to="/allItems" className="block px-2 py-1 hover:bg-gray-100 rounded">All Items</Link>
+          <Link to="/about" className="block px-2 py-1 hover:bg-gray-100 rounded">About Us</Link>
+          <Link to="/contact" className="block px-2 py-1 hover:bg-gray-100 rounded">Contact Us</Link>
+
           {user ? (
             <>
               <button
