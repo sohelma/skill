@@ -12,8 +12,8 @@ const Navbar = () => {
 
   return (
     
-    <nav className="bg-white shadow-md fixed w-full z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav className="bg-white shadow-md fixed w-11/12 z-50">
+      <div className="max-w-[99rem] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
 
           {/* Left Logo */}
@@ -32,7 +32,12 @@ const Navbar = () => {
           {/* Center Links */}
           <div className="hidden md:flex gap-8">
             <Link to="/" className="text-gray-700 font-semibold hover:text-blue-500 transition">Home</Link>
+            <Link to="/allItems" className="text-gray-700 font-semibold hover:text-blue-500 transition">All Items</Link>
+            <Link to="/about" className="text-gray-700 font-semibold hover:text-blue-500 transition">About Us</Link>
             <Link to="/profile" className="text-gray-700 font-semibold hover:text-blue-500 transition">My Profile</Link>
+            <Link to="/contact" className="text-gray-700 font-semibold hover:text-blue-500 transition">Contact Us</Link>
+      
+
           </div>
 
           {/* Right Buttons */}

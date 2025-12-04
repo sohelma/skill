@@ -19,7 +19,7 @@ const Home = () => {
   const topProviders = [...skills].sort((a, b) => b.rating - a.rating).slice(0, 4);
 
   return (
-    <div className="space-y-16 ">
+    <div className="space-y-16 w-11/12 mx-auto ">
       {/* Hero Section */}
       <HeroSection />
 

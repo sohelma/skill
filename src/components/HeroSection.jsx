@@ -41,57 +41,43 @@ const slides = [
 
 const HeroSection = () => {
   return (
-    <div className="relative w-full">
-      <Swiper
-        modules={[Navigation, Autoplay, Pagination]}
-        navigation
-        pagination={{ clickable: true }}
-        loop
-        autoplay={{ delay: 4000, disableOnInteraction: false }}
-        className="w-full h-[500px] md:h-[600px] rounded-lg overflow-hidden"
-      >
-        {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
-            <div className="relative w-full h-full">
-              {/* Background Image */}
-              <img
-                src={slide.image}
-                alt={slide.title}
-                className="w-full h-full object-cover brightness-75"
-              />
+<div className="relative w-full pt-20">
+  <Swiper
+    modules={[Navigation, Autoplay, Pagination]}
+    navigation
+    pagination={{ clickable: true }}
+    loop
+    autoplay={{ delay: 4000, disableOnInteraction: false }}
+    className="w-full !h-[60vh] md:!h-[70vh] rounded-lg overflow-hidden"
+  >
+    {slides.map((slide) => (
+      <SwiperSlide key={slide.id}>
+        <div className="relative w-full h-full">
+          <img
+            src={slide.image}
+            alt={slide.title}
+            className="w-full h-full object-cover brightness-75"
+          />
 
-              {/* Overlay Content */}
-              <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 md:px-12 text-white">
-                <h1 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-lg">
-                  {slide.title}
-                </h1>
-                <p className="text-base md:text-lg max-w-2xl mb-6 opacity-90">
-                  {slide.subtitle}
-                </p>
-
-                <div className="flex gap-4 flex-wrap justify-center">
-                  {/* <Link
-                    to="/skills"
-                    className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 px-6 py-3 rounded-lg shadow-lg transition text-white font-semibold"
-                  >
-                    Explore Skills
-                  </Link> */}
-                  {/* <Link
-                    to="/register"
-                    className="bg-white text-blue-700 font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-blue-50 transition"
-                  >
-                    Join Now
-                  </Link> */}
-                </div>
-              </div>
+          {/* Overlay Content */}
+          <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-6 md:px-12 text-white">
+            <div className="mt-10"> {/* top space add করতে */}
+              <h1 className="text-3xl md:text-5xl font-extrabold mb-3 drop-shadow-lg">
+                {slide.title}
+              </h1>
+              <p className="text-base md:text-lg max-w-2xl mb-6 opacity-90">
+                {slide.subtitle}
+              </p>
             </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
+          </div>
+        </div>
+      </SwiperSlide>
+    ))}
+  </Swiper>
 
-    
-      <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
-    </div>
+  <div className="absolute bottom-0 left-0 w-full h-20 bg-gradient-to-t from-black/40 to-transparent pointer-events-none"></div>
+</div>
+
   );
 };
 
